@@ -28,12 +28,6 @@ A repository where I share my coding experiments and projects.
 
 ---
 
-📊 GitHub Stats
-
-"GitHub Stats" (https://github-readme-stats.vercel.app/api?username=nihent&show_icons=true&theme=tokyonight)
-
----
-
 🚀 Future Goals
 
 - Build useful apps
