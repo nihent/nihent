@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nihent’s Quiet Corner</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Pacifico&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-glow: rgba(56, 189, 248, 0.4);
+            --card-bg: rgba(15, 23, 42, 0.6);
+            --text-color: #e2e8f0;
+            --accent-color: #7dd3fc;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background: #020617;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(30, 41, 59, 0.5) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, rgba(15, 23, 42, 1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(30, 41, 59, 0.5) 0, transparent 50%);
+            min-height: 100vh;
+            color: var(--text-color);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="font-size:24px"><text y="20">💧</text></svg>'), auto;
+        }
+
+        /* 🌧️ RAIN EFFECT */
+        .rain-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .drop {
+            position: absolute;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2));
+            width: 1px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1.5s ease;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 30px var(--primary-glow);
+            transition: 0.5s;
+            object-fit: cover;
+        }
+
+        .profile-pic:hover {
+            transform: rotate(5deg) scale(1.1);
+            box-shadow: 0 0 50px var(--accent-color);
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 4rem;
+            color: var(--accent-color);
+            margin: 20px 0 10px 0;
+            text-shadow: 0 0 20px rgba(125, 211, 252, 0.5);
+        }
+
+        .subtitle {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            color: #94a3b8;
+            text-transform: uppercase;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .card.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            border: 1px solid var(--accent-color);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+        }
+
+        h2 {
+            font-family: 'Quicksand', sans-serif;
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        p { line-height: 1.8; font-size: 1.1rem; color: #cbd5e1; }
+
+        /* 💻 SKILLS SECTION */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        .skill-item:hover {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .skill-item i { font-size: 2rem; margin-bottom: 10px; color: var(--accent-color); display: block; }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            margin-bottom: 12px;
+            padding: 15px 20px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .list-item:hover { background: rgba(255, 255, 255, 0.08); padding-left: 30px; }
+        .list-item i { color: var(--accent-color); width: 20px; }
+
+        /* 📸 UPDATED GALLERY LAYOUT (2+1) */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            justify-items: center;
+            margin-top: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .polaroid {
+            background: #f8fafc;
+            padding: 10px 10px 30px 10px;
+            width: 160px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            transition: 0.4s;
+        }
+
+        .polaroid:nth-child(1) { transform: rotate(-3deg); }
+        .polaroid:nth-child(2) { transform: rotate(4deg); }
+        
+        /* Centering the 3rd image below */
+        .polaroid:nth-child(3) {
+            grid-column: span 2;
+            transform: rotate(-1deg);
+        }
+
+        .polaroid:hover {
+            transform: rotate(0) scale(1.1);
+            z-index: 50;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            filter: grayscale(20%);
+        }
+
+        /* 🎧 MUSIC BUTTON */
+        #musicBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-color);
+            color: #020617;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 0 20px var(--accent-color);
+            transition: 0.3s;
+        }
+
+        /* 🔗 SOCIAL BUTTONS */
+        .social-links { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .social-btn {
+            text-decoration: none; color: white; padding: 12px 25px; border-radius: 50px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s; display: flex; align-items: center; gap: 10px;
+        }
+        .social-btn:hover { background: var(--accent-color); color: #020617; transform: translateY(-3px); }
+
+        footer { text-align: center; padding: 40px; color: #475569; font-size: 0.9rem; letter-spacing: 2px; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.8rem; }
+            .gallery { gap: 15px; }
+            .polaroid { width: 130px; }
+            .polaroid img { height: 130px; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="musicBtn"><i class="fas fa-music"></i> Play Vibe</button>
+
+    <div class="rain-container" id="rain"></div>
+
+    <div class="container">
+        <header>
+            <img src="me.jpg" alt="Nihent" class="profile-pic" onerror="this.src='https://i.pinimg.com/564x/8a/1c/65/8a1c65dcf1b37e2316e6f5cd9a7dc1dc.jpg'">
+            <h1>Nihent’s Quiet Corner</h1>
+            <p class="subtitle">Code • Rain • Silence</p>
+        </header>
+
+        <main>
+            <section class="card reveal">
+                <h2><i class="fas fa-feather-alt"></i> The Story</h2>
+                <p>Welcome to my sanctuary. I am a <strong>Beginner Developer</strong> who thrives in the symphony of raindrops and the glow of a monitor. Coding for me is a creative escape, best enjoyed when the sky is gray and the world is silent.</p>
+                <p>I find peace in the shadows, the smell of petrichor, and the soft hum of ambient beats. This space is a true reflection of my journey—calm, deep, and always learning.</p>
+            </section>
+
+            <section class="card reveal">
+                <h2><i class="fas fa-terminal"></i> Tech Arsenal</h2>
+                <div class="skills-grid">
+                    <div class="skill-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
+                    <div class="skill-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+                    <div class="skill-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
+                    <div class="skill-item"><i class="fab fa-python"></i><span>Python</span></div>
+                </div>
+            </section>
+
+            <section class="card reveal" style="text-align: center;">
+                <h2><i class="fas fa-camera-retro"></i> Captured Moods</h2>
+                <div class="gallery">
+                    <div class="polaroid"><img src="rain1.jpg" alt="Rain"></div>
+                    <div class="polaroid"><img src="rain2.jpg" alt="Mood"></div>
+                    <div class="polaroid"><img src="rain3.jpg" alt="Nature"></div>
+                </div>
+            </section>
+
+            <section class="card reveal">
+                <h2><i class="fas fa-mountain"></i> The Journey Ahead</h2>
+                <div class="list-item"><i class="fas fa-rocket"></i><span>Building apps that solve real problems.</span></div>
+                <div class="list-item"><i class="fas fa-code-branch"></i><span>Writing clean and aesthetic code.</span></div>
+                <div class="list-item"><i class="fas fa-mug-hot"></i><span>Black coffee & Midnight thunderstorms.</span></div>
+            </section>
+
+            <section class="card reveal" style="text-align: center;">
+                <h2><i class="fas fa-paper-plane"></i> Reach Out</h2>
+                <div class="social-links">
+                    <a href="mailto:nihent9@gmail.com" class="social-btn"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="https://instagram.com/nihent_" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://discord.com/users/nihent_" class="social-btn"><i class="fab fa-discord"></i> Discord</a>
+                    <a href="https://t.me/Nihent" class="social-btn"><i class="fab fa-telegram"></i> Telegram</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            DESIGNED WITH 🖤 BY NIHENT | 2026
+        </footer>
+    </div>
+
+    <script>
+        // RAIN SCRIPT
+        const rainContainer = document.getElementById('rain');
+        for (let i = 0; i < 100; i++) {
+            const drop = document.createElement('div');
+            drop.classList.add('drop');
+            drop.style.left = Math.random() * 100 + 'vw';
+            drop.style.height = Math.random() * 20 + 10 + 'px';
+            drop.style.animationDuration = Math.random() * 0.5 + 0.5 + 's';
+            drop.style.animationDelay = Math.random() * 2 + 's';
+            drop.style.opacity = Math.random() * 0.3;
+            rainContainer.appendChild(drop);
+        }
+
+        // MUSIC SCRIPT
+        const music = document.getElementById("bgMusic");
+        const btn = document.getElementById("musicBtn");
+        btn.onclick = () => {
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = '<i class="fas fa-pause"></i> Pause Vibe';
+            } else {
+                music.pause();
+                btn.innerHTML = '<i class="fas fa-play"></i> Play Vibe';
+            }
+        };
+
+        // REVEAL SCRIPT
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('reveal');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.card').forEach(card => observer.observe(card));
+    </script>
+</body>
+</html>
