@@ -14,6 +14,7 @@
             --card-bg: rgba(15, 23, 42, 0.6);
             --text-color: #e2e8f0;
             --accent-color: #7dd3fc;
+            --polaroid-dark: rgba(15, 23, 42, 0.9); /* Moody Dark Frame */
         }
 
         body {
@@ -80,11 +81,6 @@
             object-fit: cover;
         }
 
-        .profile-pic:hover {
-            transform: rotate(5deg) scale(1.1);
-            box-shadow: 0 0 50px var(--accent-color);
-        }
-
         h1 {
             font-family: 'Pacifico', cursive;
             font-size: 4rem;
@@ -114,15 +110,7 @@
             transform: translateY(20px);
         }
 
-        .card.reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .card:hover {
-            border: 1px solid var(--accent-color);
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
-        }
+        .card.reveal { opacity: 1; transform: translateY(0); }
 
         h2 {
             font-family: 'Quicksand', sans-serif;
@@ -135,9 +123,72 @@
             justify-content: center;
         }
 
-        p { line-height: 1.8; font-size: 1.1rem; color: #cbd5e1; }
+        /* 📸 DARK MOODY GALLERY (2+1 Layout) */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            justify-items: center;
+            margin-top: 30px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-        /* 💻 SKILLS SECTION */
+        .polaroid {
+            background: var(--polaroid-dark); /* Dark Frame */
+            padding: 12px 12px 35px 12px;
+            width: 100%;
+            max-width: 180px; /* Responsive Width */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7), inset 0 0 15px rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .polaroid::after {
+            content: "";
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+        }
+
+        .polaroid:nth-child(1) { transform: rotate(-4deg); }
+        .polaroid:nth-child(2) { transform: rotate(5deg); }
+        
+        /* Centering the 3rd image below and fixing overflow */
+        .polaroid:nth-child(3) {
+            grid-column: span 2;
+            transform: rotate(-1deg);
+            max-width: 190px;
+        }
+
+        .polaroid:hover {
+            transform: rotate(0) scale(1.1);
+            z-index: 50;
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 45px rgba(56, 189, 248, 0.2);
+        }
+
+        .polaroid img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            filter: grayscale(40%) contrast(110%);
+            border-radius: 2px;
+            transition: 0.5s;
+        }
+
+        .polaroid:hover img {
+            filter: grayscale(0%) contrast(100%);
+        }
+
+        /* 💻 SKILLS & LISTS */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -173,50 +224,6 @@
             transition: 0.3s;
         }
 
-        .list-item:hover { background: rgba(255, 255, 255, 0.08); padding-left: 30px; }
-        .list-item i { color: var(--accent-color); width: 20px; }
-
-        /* 📸 UPDATED GALLERY LAYOUT (2+1) */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            justify-items: center;
-            margin-top: 30px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .polaroid {
-            background: #f8fafc;
-            padding: 10px 10px 30px 10px;
-            width: 160px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            transition: 0.4s;
-        }
-
-        .polaroid:nth-child(1) { transform: rotate(-3deg); }
-        .polaroid:nth-child(2) { transform: rotate(4deg); }
-        
-        /* Centering the 3rd image below */
-        .polaroid:nth-child(3) {
-            grid-column: span 2;
-            transform: rotate(-1deg);
-        }
-
-        .polaroid:hover {
-            transform: rotate(0) scale(1.1);
-            z-index: 50;
-        }
-
-        .polaroid img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            filter: grayscale(20%);
-        }
-
         /* 🎧 MUSIC BUTTON */
         #musicBtn {
             position: fixed;
@@ -247,9 +254,9 @@
 
         @media (max-width: 600px) {
             h1 { font-size: 2.8rem; }
-            .gallery { gap: 15px; }
-            .polaroid { width: 130px; }
-            .polaroid img { height: 130px; }
+            .gallery { gap: 15px; padding: 0 10px; }
+            .polaroid { width: 140px; padding: 8px 8px 25px 8px; }
+            .polaroid:nth-child(3) { max-width: 140px; }
         }
     </style>
 </head>
@@ -273,8 +280,8 @@
         <main>
             <section class="card reveal">
                 <h2><i class="fas fa-feather-alt"></i> The Story</h2>
-                <p>Welcome to my sanctuary. I am a <strong>Beginner Developer</strong> who thrives in the symphony of raindrops and the glow of a monitor. Coding for me is a creative escape, best enjoyed when the sky is gray and the world is silent.</p>
-                <p>I find peace in the shadows, the smell of petrichor, and the soft hum of ambient beats. This space is a true reflection of my journey—calm, deep, and always learning.</p>
+                <p>I am a <strong>Beginner Developer</strong> who thrives in the symphony of raindrops. Coding for me is a creative escape, best enjoyed when the sky is gray and the world is silent.</p>
+                <p>This space is a true reflection of my soul—deep, calm, and always evolving under the stormy skies of 2026.</p>
             </section>
 
             <section class="card reveal">
@@ -298,8 +305,7 @@
 
             <section class="card reveal">
                 <h2><i class="fas fa-mountain"></i> The Journey Ahead</h2>
-                <div class="list-item"><i class="fas fa-rocket"></i><span>Building apps that solve real problems.</span></div>
-                <div class="list-item"><i class="fas fa-code-branch"></i><span>Writing clean and aesthetic code.</span></div>
+                <div class="list-item"><i class="fas fa-rocket"></i><span>Building aesthetic & clean applications.</span></div>
                 <div class="list-item"><i class="fas fa-mug-hot"></i><span>Black coffee & Midnight thunderstorms.</span></div>
             </section>
 
