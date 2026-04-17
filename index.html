@@ -14,7 +14,12 @@
             --card-bg: rgba(15, 23, 42, 0.6);
             --text-color: #e2e8f0;
             --accent-color: #7dd3fc;
-            --polaroid-dark: rgba(15, 23, 42, 0.9); /* Moody Dark Frame */
+            --polaroid-dark: rgba(15, 23, 42, 0.9);
+        }
+
+        /* Box sizing fix to prevent overflow */
+        * {
+            box-sizing: border-box;
         }
 
         body {
@@ -83,7 +88,7 @@
 
         h1 {
             font-family: 'Pacifico', cursive;
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: var(--accent-color);
             margin: 20px 0 10px 0;
             text-shadow: 0 0 20px rgba(125, 211, 252, 0.5);
@@ -91,7 +96,7 @@
 
         .subtitle {
             font-family: 'Quicksand', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             letter-spacing: 2px;
             color: #94a3b8;
             text-transform: uppercase;
@@ -108,6 +113,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             opacity: 0;
             transform: translateY(20px);
+            width: 100%;
         }
 
         .card.reveal { opacity: 1; transform: translateY(0); }
@@ -115,31 +121,32 @@
         h2 {
             font-family: 'Quicksand', sans-serif;
             color: var(--accent-color);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-top: 0;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             justify-content: center;
         }
 
-        /* 📸 DARK MOODY GALLERY (2+1 Layout) */
+        /* 📸 RESPONSIVE DARK GALLERY */
         .gallery {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+            gap: 20px;
             justify-items: center;
             margin-top: 30px;
-            max-width: 550px;
+            width: 100%;
+            max-width: 450px; /* Constrain max width so it doesn't spread too far */
             margin-left: auto;
             margin-right: auto;
         }
 
         .polaroid {
-            background: var(--polaroid-dark); /* Dark Frame */
-            padding: 12px 12px 35px 12px;
+            background: var(--polaroid-dark);
+            padding: 10px 10px 30px 10px;
             width: 100%;
-            max-width: 180px; /* Responsive Width */
+            max-width: 170px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.7), inset 0 0 15px rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
             transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -153,7 +160,7 @@
             left: 50%;
             transform: translateX(-50%);
             width: 40px;
-            height: 4px;
+            height: 3px;
             background: rgba(255,255,255,0.1);
             border-radius: 2px;
         }
@@ -161,11 +168,10 @@
         .polaroid:nth-child(1) { transform: rotate(-4deg); }
         .polaroid:nth-child(2) { transform: rotate(5deg); }
         
-        /* Centering the 3rd image below and fixing overflow */
+        /* 3rd image centered */
         .polaroid:nth-child(3) {
             grid-column: span 2;
             transform: rotate(-1deg);
-            max-width: 190px;
         }
 
         .polaroid:hover {
@@ -191,7 +197,7 @@
         /* 💻 SKILLS & LISTS */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
             gap: 15px;
             margin-top: 20px;
         }
@@ -203,6 +209,10 @@
             text-align: center;
             border: 1px solid transparent;
             transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .skill-item:hover {
@@ -211,7 +221,8 @@
             transform: scale(1.05);
         }
 
-        .skill-item i { font-size: 2rem; margin-bottom: 10px; color: var(--accent-color); display: block; }
+        .skill-item i { font-size: 2.2rem; margin-bottom: 10px; color: var(--accent-color); display: block; }
+        .skill-item span { font-weight: 600; font-size: 0.95rem; }
 
         .list-item {
             display: flex;
@@ -252,11 +263,22 @@
 
         footer { text-align: center; padding: 40px; color: #475569; font-size: 0.9rem; letter-spacing: 2px; }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 2.8rem; }
-            .gallery { gap: 15px; padding: 0 10px; }
-            .polaroid { width: 140px; padding: 8px 8px 25px 8px; }
-            .polaroid:nth-child(3) { max-width: 140px; }
+        /* 📱 MOBILE FIXES */
+        @media (max-width: 500px) {
+            h1 { font-size: 2.5rem; }
+            .card { padding: 25px 15px; } /* Reduced padding on mobile to give gallery space */
+            
+            .gallery { 
+                gap: 10px; /* Reduced gap between images */
+            }
+            
+            .polaroid { 
+                max-width: 130px; /* Force polaroids to be smaller on mobile */
+                padding: 8px 8px 25px 8px; 
+            }
+            
+            .polaroid::after { width: 30px; bottom: 10px; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -287,10 +309,10 @@
             <section class="card reveal">
                 <h2><i class="fas fa-terminal"></i> Tech Arsenal</h2>
                 <div class="skills-grid">
-                    <div class="skill-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
-                    <div class="skill-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
-                    <div class="skill-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
-                    <div class="skill-item"><i class="fab fa-python"></i><span>Python</span></div>
+                    <div class="skill-item"><i class="fab fa-html5"></i><span>HTML (Basic)</span></div>
+                    <div class="skill-item"><i class="fab fa-css3-alt"></i><span>CSS (Learning)</span></div>
+                    <div class="skill-item"><i class="fab fa-js"></i><span>JS (Learning)</span></div>
+                    <div class="skill-item"><i class="fab fa-python"></i><span>Python (Learning)</span></div>
                 </div>
             </section>
 
