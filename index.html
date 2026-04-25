@@ -196,6 +196,35 @@
             .cursor-dot, .cursor-outline, .aurora { display: none; }
             .profile-wrapper, .card { transform: none !important; } /* Disable 3D tilt on mobile */
         }
+
+        /* 💻 FIX FOR DESKTOP & LANDSCAPE */
+        .container { 
+            padding: 50px 20px; 
+        }
+        header { 
+            margin-bottom: 50px; 
+        }
+        h1 { 
+            font-size: clamp(3.2rem, 5vw, 4.5rem); 
+        }
+
+        @media (min-width: 769px) {
+            .container {
+                max-width: 950px; 
+            }
+            main {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            .card {
+                margin-bottom: 0;
+                height: 100%;
+            }
+            .card:first-child, .card:last-child {
+                grid-column: span 2;
+            }
+        }
     </style>
 </head>
 <body>
