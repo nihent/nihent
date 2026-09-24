@@ -10,7 +10,7 @@
 
 ### 🚀 About Me
 
-i love devlopment in quite peaceful place with my black hot coffee 🌿
+i love development in a quiet, peaceful place with my black hot coffee 🌿
 
 🌱 &nbsp;I'm currently learning **WEB DEVELOPMENT**  
 💬 &nbsp;Ask me about **DOCKER, SANDBOX, VPS**  
@@ -42,10 +42,10 @@ i love devlopment in quite peaceful place with my black hot coffee 🌿
 ### 🔗 Connect With Me
 
 <p align="left">
-  <a href="https://x.com/oldlef" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" alt="X" /></a>
-  <a href="https://instagram.com/oldleafs" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" /></a>
+  <a href="https://x.com/samegrapes" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" alt="X" /></a>
+  <a href="https://instagram.com/nihent7" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" /></a>
   <a href="https://nihent.com" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Portfolio-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio" /></a>
-  <a href="mailto:nihent9@gmail.com" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+  <a href="mailto:nihent7@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
 </p>
 
 ### 📊 GitHub Stats
